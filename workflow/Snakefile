@@ -2,9 +2,9 @@ from pathlib import Path
 import pandas as pd
 
 ### Load samples.tsv file and obtain list of samples ###
-# SAMPLE_TABLE = pd.read_csv(config["input"]["sample table"], index_col="sample", sep="\t")
-# SAMPLE_TABLE.index = SAMPLE_TABLE.index.map(str)  # convert index (samples) to string 
-# SAMPLES = SAMPLE_TABLE.index.tolist()  # obtain list of samples 
+SAMPLE_TABLE = pd.read_csv(config["input"]["sample table"], index_col="sample", sep="\t")
+SAMPLE_TABLE.index = SAMPLE_TABLE.index.map(str)  # convert index (samples) to string 
+SAMPLES = SAMPLE_TABLE.index.tolist()  # obtain list of samples 
 
 ##### Define intermediate/results files/directories #####
 scratch_dir = Path(config["scratch directory"])
@@ -14,44 +14,21 @@ Path(scratch_dir).mkdir(exist_ok=True, parents=True)
 Path(results_dir).mkdir(exist_ok=True, parents=True)
 
 scratch_dict = {
-    "QC": scratch_dir / "QC",  # QC: read trimming/filtering
-    "genome_assembly": scratch_dir / "genome_assembly",  # read assembly 
-    "read_mapping": scratch_dir / "read_mapping",  # read mapping (pre-binning)
-    "metabat_binning": scratch_dir / "metabat_binning",  # metabat2 assembly binning 
-    "checkm_bin_quality": scratch_dir / "checkm_bin_quality",  # bin quality
-    "gtdb_classification": scratch_dir / "gtdb_classification",  # GTDB-tk taxonomic classification 
-    "fastANI": scratch_dir / "fastANI",  # many-to-many bin fastANI
+    "read_mapping": scratch_dir / "read_mapping", 
+    "microbemod_call_methylation": scratch_dir / "microbemod_call_methylation", 
 }
 
 results_dict = {
-    # binning, quality, and classification final table
-    'aggregate_table': results_dir / "aggregate_table.tsv", 
-
-    # fastANI results between Pro bins
-    'fastANI_Prochlorococcus': results_dir / "fastANI_Prochlorococcus.tsv", 
+    'TEMP': results_dir / "TEMP.tsv", 
 }
 
-##### Define the file files to generate #####
+##### Define output files to generate #####
 rule all:
     input:
-        results_dict['fastANI_Prochlorococcus'], 
-
-rule test_microbemod:
-    output: results_dict['fastANI_Prochlorococcus'], 
-    conda: config["MicrobeMod"]["conda env name"]  
-    params: config["MicrobeMod"]["installation path"]  
-    shell:
-        """
-        pwd
-        ls
-
-        echo using workflow/ path 
-        workflow/envs/MicrobeMod/bin/MicrobeMod call_methylation --help
-        echo
-
-        echo using config path
-        {params}/bin/MicrobeMod call_methylation --help
+        expand(scratch_dict['microbemod_call_methylation'] / "{sample}_motifs.tsv", sample=SAMPLES), 
+        # expand(scratch_dict["read_mapping"] / "{sample}_sorted.bam", sample=SAMPLES), 
 
 
-        touch {output}
-        """
+##### Import all .smk rule files #####
+for smk_file in Path('workflow/rules').glob('*smk'):
+    include: str(smk_file).replace('workflow/', '') 

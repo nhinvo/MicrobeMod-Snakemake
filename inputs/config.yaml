@@ -1,6 +1,16 @@
+input: 
+  sample table: inputs/samples.tsv
+
+dorado:
+  # path to location of ONT dorado installation 
+  installation path: workflow/installations/dorado
+
 MicrobeMod: 
-  conda env name: microbemod_dependencies
-  installation path: /orcd/data/chisholm/001/nvo/projects/24_allison_methylation/Nanopore/MicrobeMod/MicrobeMod
+  # name of conda env where MicrobeMod dependencies were installed 
+  conda env name: microbemod_dependencies  
+  # path to location of MicrobeMod installation 
+  installation path: workflow/installations/MicrobeMod
+  methylation_confidence_threshold: 0.8
 
 scratch directory: scratch
 results directory: results

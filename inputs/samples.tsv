@@ -1,0 +1,3 @@
+sample	read_path	reference_path
+SQK-NBD114-24_barcode02_1	/orcd/data/chisholm/001/chisholmlab/experiment_repository/2024/240730Chi/PseudoID-24/20240805_1712_1B_PAW59116_2cfaf0b1/demux_modified_basecall/SQK-NBD114-24_barcode02.bam	/nobackup1b/users/chisholmlab/nvo/24_allison_methylation/MAG_Snakemake/metabat_binning/bins/SQK-NBD114-24_barcode02/SQK-NBD114-24_barcode02.1.fa
+SQK-NBD114-24_barcode24_1	/orcd/data/chisholm/001/chisholmlab/experiment_repository/2024/240730Chi/PseudoID-24/20240805_1712_1B_PAW59116_2cfaf0b1/demux_modified_basecall/SQK-NBD114-24_barcode24.bam	/nobackup1b/users/chisholmlab/nvo/24_allison_methylation/MAG_Snakemake/metabat_binning/bins/SQK-NBD114-24_barcode24/SQK-NBD114-24_barcode24.1.fa
