@@ -17,4 +17,7 @@ rule microbemod:
             --threads {resources.cpus_per_task} \
             --output_prefix {wildcards.sample} \
             --output_directory $(dirname {output})
+
+        # call_methylation doesn't produce output if no methylated sites identified. 
+        touch {output}
         """

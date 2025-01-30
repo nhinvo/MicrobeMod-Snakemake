@@ -5,8 +5,11 @@ Snakemake Pipeline for Methylation Detection of Nanopore Sequencing Data using M
 ### 1. Install Snakemake and Conda/Mamba  
 Install Snakemake and Conda/Mamba following the instructions at this [link](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html#:~:text=for%20installing%20Snakemake.-,Installation%20via%20Conda/Mamba,-This%20is%20the). 
 
-### 2. Install MicrobeMod and MicrobeMod's Dependencies 
-Install the MicrobeMod and its Dependencies following the instructions on their [Github](https://github.com/cultivarium/MicrobeMod) 
+### 2. Install dorado
+Install the dorado following instructions on their [Github](https://github.com/nanoporetech/dorado). Edit the path to your dorado install in "inputs/config.yaml" on line 4 (dorado: installation path).
+
+### 3. Install MicrobeMod and MicrobeMod's Dependencies 
+Install the MicrobeMod and its Dependencies following the instructions on their [Github](https://github.com/cultivarium/MicrobeMod). Edit the path to your MicrobeMod installation in "inputs/config.yaml" on line 12 (MicrobeMod: installation path), and the conda environment name on line 10 (MicrobeMod: conda env name).
 
 ### 3.Set up Snakemake Pipeline
 #### 1. Edit Experimental Configurations
