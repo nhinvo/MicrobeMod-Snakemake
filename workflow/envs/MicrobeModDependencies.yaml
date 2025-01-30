@@ -1,0 +1,12 @@
+channels:
+- conda-forge
+- bioconda
+- defaults
+- nanoporetech
+dependencies:
+- modkit
+- meme
+- prodigal 
+- hmmer 
+- blast 
+- cath-tools

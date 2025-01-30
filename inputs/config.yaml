@@ -1,0 +1,6 @@
+MicrobeMod: 
+  conda env name: microbemod_dependencies
+  installation path: /orcd/data/chisholm/001/nvo/projects/24_allison_methylation/Nanopore/MicrobeMod/MicrobeMod
+
+scratch directory: scratch
+results directory: results
