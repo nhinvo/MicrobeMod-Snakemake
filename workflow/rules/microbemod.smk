@@ -21,3 +21,9 @@ rule microbemod:
         # call_methylation doesn't produce output if no methylated sites identified. 
         touch {output}
         """
+
+rule parse_microbemod:
+    input: expand(scratch_dict['microbemod_call_methylation'] / "{sample}_motifs.tsv", sample=SAMPLES), 
+    output: results_dict['final_table'], 
+    conda: "../envs/data_parse.yaml"
+    script: "../scripts/parse_microbemod.py"
