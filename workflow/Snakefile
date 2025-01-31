@@ -20,18 +20,15 @@ scratch_dict = {
 }
 
 results_dict = {
-    'final_table_tsv': results_dir / "microbemod_out.tsv", 
-    'final_table_xlsx': results_dir / "microbemod_out.xlsx",
+    'parsed_call_methylation': results_dir / "call_methylation.tsv", 
+    'parsed_annotate_rm': results_dir / "annotate_rm.tsv",
 }
 
 ##### Define output files to generate #####
 rule all:
     input:
-        expand(scratch_dict['microbemod_annotate_rm'] / "{sample}.genes.tsv", sample=SAMPLES)
-        # results_dict['final_table_tsv'], 
-        # expand(scratch_dict['microbemod_call_methylation'] / "{sample}_motifs.tsv", sample=SAMPLES), 
-
-
+        results_dict['parsed_call_methylation'], 
+        
 ##### Import all .smk rule files #####
 for smk_file in Path('workflow/rules').glob('*smk'):
     include: str(smk_file).replace('workflow/', '') 
