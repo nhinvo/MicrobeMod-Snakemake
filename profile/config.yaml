@@ -25,7 +25,7 @@ cluster:
 # most rules are multi-threaded 
 default-resources: 
   - time="12:00:00"  # default time 
-  - partition="newnodes"
+  - partition="sched_mit_chisholm"
   - mem=50000  # default memory 
   - cpus_per_task=5
   - tasks=1

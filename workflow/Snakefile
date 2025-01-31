@@ -19,14 +19,15 @@ scratch_dict = {
 }
 
 results_dict = {
-    'final_table': results_dir / "microbemod_out.tsv", 
+    'final_table_tsv': results_dir / "microbemod_out.tsv", 
+    'final_table_xlsx': results_dir / "microbemod_out.xlsx",
 }
 
 ##### Define output files to generate #####
 rule all:
     input:
-        expand(scratch_dict['microbemod_call_methylation'] / "{sample}_motifs.tsv", sample=SAMPLES), 
-        # results_dict['final_table'], 
+        results_dict['final_table_tsv'], 
+        # expand(scratch_dict['microbemod_call_methylation'] / "{sample}_motifs.tsv", sample=SAMPLES), 
 
 
 ##### Import all .smk rule files #####

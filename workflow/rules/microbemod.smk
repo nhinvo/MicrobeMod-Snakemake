@@ -24,6 +24,8 @@ rule microbemod:
 
 rule parse_microbemod:
     input: expand(scratch_dict['microbemod_call_methylation'] / "{sample}_motifs.tsv", sample=SAMPLES), 
-    output: results_dict['final_table'], 
+    output: 
+        tsv = results_dict['final_table_tsv'],
+        xlsx =  results_dict['final_table_xlsx'],
     conda: "../envs/data_parse.yaml"
     script: "../scripts/parse_microbemod.py"
