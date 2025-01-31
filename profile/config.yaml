@@ -29,3 +29,7 @@ default-resources:
   - mem=50000  # default memory 
   - cpus_per_task=5
   - tasks=1
+
+set-resources:
+  - microbemod_annotate_rm:cpus_per_task=1
+  - microbemod_annotate_rm:mem=1000

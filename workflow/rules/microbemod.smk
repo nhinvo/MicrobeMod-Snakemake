@@ -1,4 +1,4 @@
-rule microbemod:
+rule microbemod_call_methylation:
     input: 
         sorted_bam = scratch_dict["read_mapping"] / "{sample}_sorted.bam",
         reference = lambda wildcards: SAMPLE_TABLE.loc[wildcards.sample, 'reference_path'], 
@@ -22,10 +22,27 @@ rule microbemod:
         touch {output}
         """
 
-rule parse_microbemod:
+rule parse_microbemod_call_methylation:
     input: expand(scratch_dict['microbemod_call_methylation'] / "{sample}_motifs.tsv", sample=SAMPLES), 
     output: 
         tsv = results_dict['final_table_tsv'],
         xlsx =  results_dict['final_table_xlsx'],
     conda: "../envs/data_parse.yaml"
     script: "../scripts/parse_microbemod.py"
+
+rule microbemod_annotate_rm:
+    input: lambda wildcards: SAMPLE_TABLE.loc[wildcards.sample, 'reference_path'], 
+    output: scratch_dict['microbemod_annotate_rm'] / "{sample}.genes.tsv", 
+    conda: config["MicrobeMod"]["conda env name"]
+    params: 
+        microbemod_path = config["MicrobeMod"]["installation path"], 
+    shell:
+        """
+        {params.microbemod_path}/bin/MicrobeMod annotate_rm \
+            --fasta {input} \
+            --output_prefix {wildcards.sample} \
+            --output_directory $(dirname {output}) \
+            --threads {resources.cpus_per_task}
+
+        touch {output}
+        """

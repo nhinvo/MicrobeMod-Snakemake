@@ -16,6 +16,7 @@ Path(results_dir).mkdir(exist_ok=True, parents=True)
 scratch_dict = {
     "read_mapping": scratch_dir / "read_mapping", 
     "microbemod_call_methylation": scratch_dir / "microbemod_call_methylation", 
+    "microbemod_annotate_rm": scratch_dir / "microbemod_annotate_rm",
 }
 
 results_dict = {
@@ -26,7 +27,8 @@ results_dict = {
 ##### Define output files to generate #####
 rule all:
     input:
-        results_dict['final_table_tsv'], 
+        expand(scratch_dict['microbemod_annotate_rm'] / "{sample}.genes.tsv", sample=SAMPLES)
+        # results_dict['final_table_tsv'], 
         # expand(scratch_dict['microbemod_call_methylation'] / "{sample}_motifs.tsv", sample=SAMPLES), 
 
 
