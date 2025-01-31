@@ -18,22 +18,6 @@ rule read_mapping:
             > {output}
         """
 
-# rule samtools_view:
-#     """
-#     Convert sam to bam.
-#     """
-#     input: scratch_dict["read_mapping"] / "{sample}.sam", 
-#     output: temp(scratch_dict["read_mapping"] / "{sample}.bam"), 
-#     conda: "../envs/samtools.yaml"
-#     shell:
-#         """
-#         samtools view \
-#             --bam \
-#             --threads {resources.cpus_per_task} \
-#             --output {output} \
-#             {input}
-#         """
-
 rule samtools_sort_index:
     """
     Description: sort index bam. 
