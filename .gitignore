@@ -1,5 +1,5 @@
 logs/*
-!logs/.temp
+!logs/.temp.txt
 .snakemake
 results/*
 scratch/*
