@@ -18,8 +18,8 @@ cluster:
     --mem={resources.mem}
     --time={resources.time}
     --job-name={rule}-%j
-    --output="logs/{rule}/{wildcards.sample}.out"
-    --error="logs/{rule}/{wildcards.sample}.err"
+    --output="logs/{rule}/{wildcards}.out"
+    --error="logs/{rule}/{wildcards}.err"
 
 # adjust as needed (increase time and mem if files are large)
 # most rules are multi-threaded 

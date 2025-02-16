@@ -1,7 +1,11 @@
 logs/*
 !logs/.temp.txt
+
 .snakemake
+
+workflow/installations
+
 results/*
 scratch/*
 trash/*
-workflow/installations
+

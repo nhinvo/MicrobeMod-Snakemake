@@ -57,9 +57,11 @@ As the pipeline runs, log messages will be saved into file named "main.[slurm_jo
 
 
 ## Results
-**RENAME_LATER.tsv:** tab-separated file with the following columns:  
-- `sample`: unique sample name
+**annotate_rm.xlsx:** Excel file with annotations of Modification Restrictions obtained from MicrobeMod `annotate_rm`.
+
+**call_methylation.xlsx:** Excel file with Methylated Sites and their Motifs obtained from MicrobeMod `call_methyation`.
 
 ## Workflow
-- Read Mapping: 
-- MicrobeMod call_methylation: 
+- Read Mapping: PacBio Dorado (which uses minimap2). Sort and index output BAM using Samtools. 
+- Methylation Detection: MicrobeMod call_methylation 
+- Methylation Annotation: MicrobeMod annotate_rm
